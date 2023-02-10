@@ -1,0 +1,214 @@
+html,body{
+    background: #2f3136;
+    margin:0;
+    min-height: 100vh;
+}
+.t-center{
+    width:90%;
+    height:30px;
+    border-radius: 10px;
+    padding: 0px 10px;
+
+}
+#chat{
+    float:left;
+    position: absolute;
+    left: 400px;
+     height: 90%;
+     width:50%;
+    top:0;
+}
+#chat .text{
+width:90%;
+height: 43px;
+background:#40444b;
+border-radius: 10px;
+margin-left:30px;
+}
+#chat .text input{
+ margin: 10px 30px;
+ width:90%;
+ border: 0 solid transparent;
+ background:transparent;
+ height: 20px;
+ color: white;
+ outline:none;
+ border-bottom: 1px solid white;
+ font-size: 18px;
+}
+.mensage{
+    padding:10px;
+    font-family: sans-serif;
+    color: white;
+    margin:5px;
+}
+.mensagems{
+    width:100%;
+    height:100%;
+    background:#36393f;
+    margin:5px;
+    border-radius: 10px;
+    
+}
+.enviar{
+    border-radius: 10px;
+    background:#6F15AB;
+    border: none;
+    height:30px;
+    font-size: 15px;
+    position: absolute;
+    left: 35%;
+    color: white;
+    width: 30%;
+    cursor: pointer;
+
+}
+
+.chats{
+    position: fixed;
+    top:0;
+    width: 91px;
+    height: 97.5%;
+    background:#202225;
+    float: left;
+    padding: 10px;
+}
+.chats ul li {
+ list-style: none; 
+ cursor: pointer;  
+ font-family: sans-serif;
+
+}
+.chats ul{
+    padding: 0px 10px;
+}
+.chats ul li ion-icon{
+    font-size: 70px;
+    color:#5663e9;
+}
+.chats ul li .title{
+ 
+    position:absolute;
+    left:100px;
+    top:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size: 1.3em;
+    background:#36393f;
+    color:#E1E1E1;
+    width:70px;
+    height: 50px;
+    padding:5px 10px ;
+    transform: translateY(-15%) translateX(-5px);
+    border-radius:6px;
+    transition:0.5s;
+    opacity:0; 
+}
+
+.chats ul li:hover .title{
+    opacity:0.9 ;
+}
+.addchat{
+    position: absolute;
+    top:85%;
+    width: 70px;
+    height:70px;
+    background:#36393f;
+    border-radius: 50%;
+    margin:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:0.2s;
+}
+.addchat:hover{
+    background:#3ba55d;
+    border-radius: 40%;
+}
+.addchat ion-icon{
+    font-size: 43px;
+    color:#3ba55d;
+}
+.addchat:hover ion-icon{
+    color:#36393f;
+}
+hr{
+border:1px solid #42454a;
+}
+.serve{
+    width: 238px;
+    position: fixed;
+    left: 111px;
+    background:#2f3136;
+    height:90%;
+    padding: 0 20px;
+    border-right: 1px solid #202225;
+}
+.serve h2{
+    line-height: 20px;
+    font-weight: 600;
+    color:white;
+    font-family: sans-serif;
+}
+#profile{
+    position: absolute;
+    top:90%;
+    left:110px;
+    width: 280px;
+    height:10%;
+    background:#202225;
+}
+#profile .imgprofile{
+    padding:10px;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    margin:10px;
+    background:#3ba55c;
+}
+#profile input{
+    border:0 solid transparent;
+    position: absolute;
+    background:transparent;
+    border-bottom: 1px solid white;
+    width:75px;
+    height: 37px;
+    padding: 0;
+    font-size: 14px;
+    font-family: sans-serif;
+    color: white;
+  outline: none;
+}
+#profile #mfone{
+    position: absolute;
+    left: 180px;
+
+}
+#profile #fone{
+    position: absolute;
+    left: 220px;
+}
+#profile button{
+    top:20px;
+    background:transparent;
+    width: 20px;
+    height:20px;
+    border: 0 solid transparent;
+    cursor: pointer;
+}
+#profile  .desativo::before{
+    content:'';
+    position: absolute;
+    width:28px;
+    height:4px;
+    top: 7px;
+    left: 2px;
+    transform:rotate(-42deg);
+    background:red;
+    border-radius: 50px;
+}
+#profile button img{
+    width: 20px;
+    height: 25px;
+}

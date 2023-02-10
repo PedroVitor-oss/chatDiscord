@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="https://th.bing.com/th/id/R.01b1e436c03e167d3b2b466f75c184a1?rik=CWHFzJtI7PjBdg&pid=ImgRaw&r=0">
+</head>
+<body>
+    <div class="serve">
+        <h2 id="nameServer">escolha um server</h2>
+        <hr>
+    </div>
+    <div id="profile">
+        <img src="imgprofile.png" class="imgprofile">
+        <input type="text" id="username" name="username"  placeholder="digite seu nome">
+        <button onclick="active(this) " id="mfone" class="ativo">
+            <img src="mfone.png" alt="" srcset="">
+        </button>
+        <button  onclick="active(this)" id="fone" class="ativo">
+            <img src="fone.png" alt="" srcset="">
+        </button>
+    </div>
+    <header class="chats">
+        <ul>
+            <li class="e-chats" onclick="abrirServe(),trocaServe(this)" id="principal">
+                <ion-icon name="logo-discord"></ion-icon>
+                <span class="title">principa</span>
+            </li>
+        </ul>  
+        <hr>
+        <div class="addchat">
+            <ion-icon name="add-outline"></ion-icon>
+        </div> 
+    </header>
+    
+
+
+
+    <audio id="turu" src="turu.mp3"></audio>
+    <form id="chat">
+        
+        <div class="mensagems"></div>
+        <div class="text">
+            <input class="" type="text" id="mensagem" name="mensagem" placeholder="digite sua mensagem">
+        </div>
+        <button type="submit" class="enviar">enviar</button>
+    </form>
+
+<!--codigo dos botoens de audio e trocar de serve-->
+<script type="text/javascript">
+    function active(i){
+        let audio = document.querySelector('#turu')
+        console.log(audio)
+        audio.play
+        if(i.classList[0] == 'ativo')
+        i.classList = 'desativo'
+        else
+        i.classList = 'ativo'
+        console.log(i.classList[0])
+    } 
+    function trocaServe(i){
+        let text = document.querySelector('#nameServer');
+         text.innerHTML = i.id
+        console.log(i.id)
+    }
+</script>
+<!--icons-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- chat soket.io-->
+<script type="text/javascript"  >
+
+        let serve = [];
+
+        function abrirServe(){
+            document.querySelector(".mensagems").innerHTML=""
+            console.log(serve)
+            for (item of serve){
+                console.log('')
+                 renderMensager(item)
+            }
+        }
+
+        var socket = io(window.location.href);
+
+        function renderMensager(mensagem){
+            $(".mensagems").append('<div class="mensage"><strong>'+ mensagem.user +'</strong> : <strong>'+ mensagem.text +'</strong></div>')
+        }
+
+        socket.on('previousMensagem',function(messages){
+            for(mensagem of messages){
+                serve.push(mensagem)
+            }
+        })
+
+        socket.on("receivedMensage", (message)=>{
+            renderMensager(message);
+        })
+
+        $('#chat').submit(function(event){
+            event.preventDefault();
+
+            var autor = document.querySelector('#username');
+ 
+            var mensagem = document.querySelector('#mensagem');
+
+            console.log(autor.value,mensagem.value)
+            if(autor.value !='' && mensagem.value !=''){
+                var mensagemObj = {
+                    user:autor.value,
+                    text:mensagem.value,
+                };
+                console.log(mensagemObj);
+
+                renderMensager(mensagemObj)
+                serve.push(mensagemObj)
+                socket.emit('sendMessage', mensagemObj);
+            }
+        })
+
+</script>
+</body>
+</html>
